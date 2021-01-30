@@ -240,7 +240,7 @@ impl Section {
 			Section::DataCount(_) => 0x0a,
 			Section::Code(_) => 0x0b,
 			Section::Data(_) => 0x0c,
-			Section::Name(_) => 0x00,
+			Section::Name(_) => 0x0d,
 			Section::Reloc(_) => 0x00,
 		}
 	}
