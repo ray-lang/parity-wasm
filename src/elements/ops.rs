@@ -2317,7 +2317,10 @@ impl Serialize for BulkInstruction {
 			}),
 			MemoryDrop(seg) => bulk!(writer, MEMORY_DROP, VarUint32::from(seg).serialize(writer)?),
 			MemoryFill => bulk!(writer, MEMORY_FILL, Uint8::from(0).serialize(writer)?),
-			MemoryCopy => bulk!(writer, MEMORY_COPY, Uint8::from(0).serialize(writer)?),
+			MemoryCopy => bulk!(writer, MEMORY_COPY, {
+				Uint8::from(0).serialize(writer)?; // src
+				Uint8::from(0).serialize(writer)?; // dst
+			}),
 			TableInit(seg) => bulk!(writer, TABLE_INIT, {
 				Uint8::from(0).serialize(writer)?;
 				VarUint32::from(seg).serialize(writer)?;
